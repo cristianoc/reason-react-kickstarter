@@ -1,0 +1,8 @@
+#node
+node_modules/
+
+#project
+dist/
+
+#reason
+lib
