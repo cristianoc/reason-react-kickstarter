@@ -16,8 +16,14 @@ S src
 B lib/bs/src
 S src/repo
 B lib/bs/src/repo
+S src/componentLibrary
+B lib/bs/src/componentLibrary
+S src/componentLibrary/loader-component
+B lib/bs/src/componentLibrary/loader-component
 S src/components
 B lib/bs/src/components
+S src/workspace
+B lib/bs/src/workspace
 S src/types
 B lib/bs/src/types
 ####BSB GENERATED: NO EDIT}

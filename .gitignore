@@ -1,8 +1,28 @@
-#node
-node_modules/
 
-#project
-dist/
+node_modules
+.eslintcache
+.DS_Store
+*.map
+*.bundle.js
+*.env
+package.lock
+yarn-error.log*
 
-#reason
+# webstorm settings
+.idea/
+
+#vscode setttings
+.vscode/
+
+# reason
 lib
+.merlin
+.bsb.lock
+lib/*
+*.bs.js
+
+#project-specific
+public/index.html
+
+public/build/*
+tmp/

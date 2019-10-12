@@ -6,7 +6,7 @@ var $$Array = require("bs-platform/lib/js/array.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Network$ReactTemplate = require("../repo/Network.bs.js");
-var LoaderComponent$ReactTemplate = require("./LoaderComponent.bs.js");
+var LoaderComponent$ReactTemplate = require("../componentLibrary/loader-component/LoaderComponent.bs.js");
 
 function PostsComponentWithLoader$PostsViewComponent(Props) {
   var posts = Props.posts;

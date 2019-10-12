@@ -4,11 +4,14 @@ module type LoaderConfig = {
 
 module LoaderComponent(Config: LoaderConfig) {
 
+  type state = Loadable.t(Config.dataType);
+
   [@react.component]
   let make = (
       ~fetchData: unit => Js.Promise.t(Config.dataType),
       ~renderView: (Config.dataType, _ => unit) => ReasonReact.reactElement, 
   ) => {
+
     let (state, setState) = React.useState(_ => Loadable.Loading);
 
     React.useEffect1(() => {
