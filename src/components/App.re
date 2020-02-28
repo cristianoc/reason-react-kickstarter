@@ -1,7 +1,8 @@
 [@react.component]
 let make = () => {
   <div>
-    <PostsComponentWithLoader.PostsComponentWithLoader />
+    // <PostsComponentWithLoader.PostsComponentWithLoader />
     // <Interop name="Prateek" />
+    <Counter />
   </div>
 }

@@ -2,10 +2,10 @@
 'use strict';
 
 var React = require("react");
-var PostsComponentWithLoader$ReactTemplate = require("./PostsComponentWithLoader.bs.js");
+var Counter$ReactTemplate = require("./Counter.bs.js");
 
 function App(Props) {
-  return React.createElement("div", undefined, React.createElement(PostsComponentWithLoader$ReactTemplate.PostsComponentWithLoader[/* make */2], { }));
+  return React.createElement("div", undefined, React.createElement(Counter$ReactTemplate.make, { }));
 }
 
 var make = App;

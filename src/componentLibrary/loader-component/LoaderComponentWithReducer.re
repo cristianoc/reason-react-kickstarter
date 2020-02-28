@@ -27,7 +27,14 @@ type action =
          Loadable.Init
       );
 
-    dispatch(LoadData);
+     React.useEffect0(() => {
+      switch(state) {
+        | Loadable.Init => dispatch(LoadData);
+        | _ => ()
+      };
+       None;
+    });
+
 
     React.useEffect1(() => {
       switch(state) {
