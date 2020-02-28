@@ -12,8 +12,10 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "reason-react": "0.7.0",
+    "serialize-javascript": "^3.0.0",
     "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.8",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
@@ -32,7 +34,8 @@
     "tailwindcss": "^1.1.2"
   },
   "scripts": {
-    "build:dev": "webpack --config webpack.dev.js",
+    "dev": "webpack-dev-server  --config webpack.development.js --hot --inline",
+    "build:dev": "webpack --config webpack.development.js",
     "build:prod": "webpack --config webpack.prod.js",
     "bs:clean": "bsb -clean-world",
     "bs:build": "bsb -make-world",

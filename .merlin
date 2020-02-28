@@ -4,7 +4,7 @@ FLG -open ReactTemplate
 FLG -ppx '/Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/bs-platform/lib/bsppx.exe -bs-jsx 3'
 S /Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/bs-platform/lib/ocaml
 B /Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/bs-platform/lib/ocaml
-FLG -nostdlib -color always
+FLG -nostdlib
 FLG -w -30-40+6+7+27+32..39+44+45+101
 S /Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/reason-react/lib/ocaml
 B /Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/reason-react/lib/ocaml
