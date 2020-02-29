@@ -11,8 +11,8 @@ function PostsComponent$PostsViewComponent(Props) {
   var posts = Props.posts;
   return React.createElement("div", undefined, React.createElement("li", undefined, $$Array.of_list(List.map((function (post) {
                             return React.createElement("ul", {
-                                        key: String(post[/* id */0])
-                                      }, React.createElement("h1", undefined, post[/* title */1]));
+                                        key: String(post.id)
+                                      }, React.createElement("h1", undefined, post.title));
                           }), posts))));
 }
 

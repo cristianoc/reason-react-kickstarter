@@ -13,8 +13,8 @@ function PostsComponentWithLoader$PostsViewComponent(Props) {
   var refeshView = Props.refeshView;
   return React.createElement("div", undefined, React.createElement("li", undefined, $$Array.of_list(List.map((function (post) {
                             return React.createElement("ul", {
-                                        key: String(post[/* id */0])
-                                      }, React.createElement("h1", undefined, post[/* title */1]));
+                                        key: String(post.id)
+                                      }, React.createElement("h1", undefined, post.title));
                           }), posts))), React.createElement("button", {
                   onClick: (function (_event) {
                       return Curry._1(refeshView, /* () */0);

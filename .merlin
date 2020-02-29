@@ -5,7 +5,7 @@ FLG -ppx '/Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/bs-plat
 S /Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/bs-platform/lib/ocaml
 B /Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/bs-platform/lib/ocaml
 FLG -nostdlib
-FLG -w -30-40+6+7+27+32..39+44+45+101
+FLG -w +a-4-9-40-41-42-50-102
 S /Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/reason-react/lib/ocaml
 B /Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/reason-react/lib/ocaml
 S /Users/prateek/Dev/myGit/reason-react-kickstarter/node_modules/@glennsl/bs-json/lib/ocaml
@@ -22,8 +22,6 @@ S src/componentLibrary/loader-component
 B lib/bs/src/componentLibrary/loader-component
 S src/components
 B lib/bs/src/components
-S src/workspace
-B lib/bs/src/workspace
 S src/types
 B lib/bs/src/types
 ####BSB GENERATED: NO EDIT}

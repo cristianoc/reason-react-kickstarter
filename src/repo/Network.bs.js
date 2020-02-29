@@ -6,15 +6,15 @@ function fetchPosts(param) {
   return new Promise((function (resolve, param) {
                 setTimeout((function (param) {
                         return resolve(/* :: */[
-                                    /* record */[
-                                      /* id */1,
-                                      /* title */"Post 1"
-                                    ],
+                                    {
+                                      id: 1,
+                                      title: "Post 1"
+                                    },
                                     /* :: */[
-                                      /* record */[
-                                        /* id */2,
-                                        /* title */"Post 2"
-                                      ],
+                                      {
+                                        id: 2,
+                                        title: "Post 2"
+                                      },
                                       /* [] */0
                                     ]
                                   ]);
