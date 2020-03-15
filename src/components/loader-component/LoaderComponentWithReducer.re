@@ -24,24 +24,15 @@ type action =
             | OnLoadData(data) => Loadable.Success(data)
             | OnError => Loadable.Error
           },
-         Loadable.Init
+         Loadable.Loading
       );
-
-     React.useEffect0(() => {
-      switch(state) {
-        | Loadable.Init => dispatch(LoadData);
-        | _ => ()
-      };
-       None;
-    });
-
 
     React.useEffect1(() => {
       switch(state) {
         | Loading => {
           open Js.Promise;
             fetchData()
-              |> then_((result) => resolve(dispatch(OnLoadData(result))))
+              |> then_((result) => result -> OnLoadData -> dispatch -> resolve)
               |> catch(_error => {
                   resolve(dispatch(OnError))
               })
@@ -55,7 +46,6 @@ type action =
     <div>
       {
         switch (state) {
-          | Init => <div>(ReasonReact.string("Init..."))</div>
           | Loading => <div>(ReasonReact.string("Loading"))</div>
           | Success(result) => renderView(result,  _ => dispatch(LoadData))
           | Error => <div>(ReasonReact.string("Error..."))</div>
@@ -63,4 +53,20 @@ type action =
       }
     </div>
   };
+};
+
+module LoaderComponentWithoutRefresh(Config: LoaderConfig) {
+  
+  module BaseLoaderComponent = LoaderComponent(Config);
+  
+  [@react.component]
+  let make = (
+    ~fetchData: unit =>  Js.Promise.t(Config.dataType),
+    ~renderView: (Config.dataType) => ReasonReact.reactElement, 
+   ) => {
+      <BaseLoaderComponent
+        fetchData=fetchData
+        renderView=((data, _onRefresh) => { renderView(data) })
+      />
+    }
 };

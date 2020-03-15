@@ -17,13 +17,13 @@ module LoaderComponent(Config: LoaderConfig) {
     React.useEffect1(() => {
       switch(state) {
         | Loadable.Loading => Js.Promise.(
-              fetchData()
-              |> then_((result) => resolve(setState(_ => Loadable.Success(result))))
-              |> catch(_error => {
-                  resolve(setState(_ => Loadable.Error))
-              })
-              |> ignore
-            )  
+            fetchData()
+            |> then_((result) => resolve(setState(_ => Loadable.Success(result))))
+            |> catch(_error => {
+              resolve((setState(_ => Loadable.Error)))
+            })
+            |> ignore
+          )  
         | _ => ()
       }
       None;
@@ -33,7 +33,6 @@ module LoaderComponent(Config: LoaderConfig) {
     <div>
       {
         switch (state) {
-          | Init => <div>(ReasonReact.string("Init..."))</div>
           | Loading => <div>(ReasonReact.string("Loading"))</div>
           | Success(result) => renderView(result,  _ => setState(_ => Loadable.Loading))
           | Error => <div>(ReasonReact.string("Error..."))</div>

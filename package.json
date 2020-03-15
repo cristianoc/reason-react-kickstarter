@@ -39,7 +39,7 @@
   "scripts": {
     "dev": "webpack-dev-server  --config webpack.development.js --hot --inline",
     "build:dev": "webpack --config webpack.development.js",
-    "build:prod": "webpack --config webpack.prod.js",
+    "build:prod": "webpack --config webpack.production.js",
     "bs:clean": "bsb -clean-world",
     "bs:build": "bsb -make-world",
     "bs:watch": "bsb -make-world -w",

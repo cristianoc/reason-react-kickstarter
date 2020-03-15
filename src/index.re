@@ -1,4 +1,4 @@
 //css import
-[%bs.raw {|require('./styles/styles.css')|}];
+[%bs.raw {|require('./common/styles/styles.css')|}];
 
 ReactDOMRe.renderToElementWithId(<App />, "root");

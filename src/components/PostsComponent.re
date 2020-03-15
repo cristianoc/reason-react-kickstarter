@@ -25,10 +25,9 @@ module PostsComponent = {
   [@react.component]
   let make = () => {
     
-    let (state, setState) = React.useState( _ => Loadable.Init);
+    let (state, setState) = React.useState( _ => Loadable.Loading);
 
     React.useEffect0(() => {
-      setState(_ =>  Loadable.Loading)
       Js.Promise.(
         Network.fetchPosts()
         |> then_(result => resolve(setState(_ => Loadable.Success(result))))
@@ -42,7 +41,6 @@ module PostsComponent = {
     <div>
       {
         switch(state) {
-          | Init => <div>(ReasonReact.string("Init"))</div>
           | Loading => <div>(ReasonReact.string("Loading"))</div>
           | Success(posts) => <PostsViewComponent posts />
           | Error => <div>(ReasonReact.string("Error..."))</div>
