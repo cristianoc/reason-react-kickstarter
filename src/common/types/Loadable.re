@@ -1,5 +1,5 @@
 type t('result) =
-|  Loading
-|  Success('result)
-|  Error
+|  Loading(option('result))
+|  Live('result)
+|  Error(Decco.decodeError)
  
