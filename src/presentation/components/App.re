@@ -2,5 +2,6 @@
 let make = () => {
   <div>
     <PostsComponent.PostsComponent />
+    // < Counter />
   </div>
 }

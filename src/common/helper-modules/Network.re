@@ -1,4 +1,4 @@
-module NetworkUtils = {
+/* module NetworkUtils = {
   let getDefaultHeaders = (): Js.t('a) => {
     {"Content-Type": "application/json", "Accept": "application/json"};
   };
@@ -18,4 +18,4 @@ let getRequest =
     )
   )
   |> Js.Promise.then_(ResponseHandler.ResponseWrapper.execute)
-};
+}; */
