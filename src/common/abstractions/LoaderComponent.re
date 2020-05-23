@@ -12,11 +12,11 @@ module LoaderComponent(Config: LoaderConfig) {
       ~renderView: _ => ReasonReact.reactElement
   ) => {
 
-    let (state, setState) = React.useState(_ => Loadable.Loading(None));
+    let (state, setState) = React.useState(_ => Loadable.Loading);
 
     React.useEffect1(() => {
       switch(state) {
-      | Loading(_) => Js.Promise.(
+      | Loading => Js.Promise.(
         fetchData()
         |> then_((result) => resolve(setState(_ => Loadable.Live(result))))
         |> catch(_error => {
@@ -32,7 +32,7 @@ module LoaderComponent(Config: LoaderConfig) {
     <div>
       {
         switch (state) {
-          | Loading(_result) => <div>(ReasonReact.string("Loading"))</div>
+          | Loading => <div>(ReasonReact.string("Loading"))</div>
           | Live(result) => renderView(result)
           | Error => <div>(ReasonReact.string("Error..."))</div>
         };
