@@ -1,5 +1,5 @@
 type t('result) =
 |  Loading
-|  Live('result) // when this value happens
+|  Success('result) // when this value happens
 |  Error
  

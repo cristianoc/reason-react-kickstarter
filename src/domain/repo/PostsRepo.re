@@ -8,6 +8,15 @@ let dummy_response = [%bs.raw
     },
     {
       id: 4, title: "Making Abstractions Powerful with ReasonML", image: "https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+    },
+    {
+      id: 5, title: "Empower your Frontend with ReasonML", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+    },
+    {
+      id: 6, title: "Fasting your way to Work", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+    },
+    {
+      id: 7, title: "Be a problem Solver, not a coding Monkey", image: "https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
     }]
   |};
 ];
@@ -20,7 +29,6 @@ let fetchPosts = () : Js.Promise.t(Belt.Result.t(Post.t, Decco.decodeError)) =>
         |> (posts) => resolve(. posts)
     )
   )
-
 
 module StateMapper = {
   let decodePost = (json) : Post.post => {

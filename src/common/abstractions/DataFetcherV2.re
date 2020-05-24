@@ -11,7 +11,7 @@ module DataFetcher = (Config: DataFetcherConfig) => {
       switch(state) {
         | Loading(_data) => ApiUtils.handleAPIRequest(
           () => fetchData(),
-          data => setState(_ => LoadableV2.Live(data)),
+          data => setState(_ => LoadableV2.Success(data)),
           error => setState(_ => LoadableV2.Error(error))
         );
         | _ => ()

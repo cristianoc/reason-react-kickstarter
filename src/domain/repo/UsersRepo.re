@@ -13,15 +13,18 @@ let dummy_response = [%bs.raw
     },
     {
     
-      id: 4, name: "Karan", src: "https://ca.slack-edge.com/T03CXPZBX-UV39NPPL2-1150807fa1f5-512"
+      id: 5, name: "Karan", src: "https://ca.slack-edge.com/T03CXPZBX-UV39NPPL2-1150807fa1f5-512"
     },
     {
     
-      id: 4, name: "Dwarika", src: "https://ca.slack-edge.com/T03CXPZBX-UTUSN3073-09cf29b2f5ac-512"
+      id: 6, name: "Dwarika", src: "https://ca.slack-edge.com/T03CXPZBX-UTUSN3073-09cf29b2f5ac-512"
     },
     {
     
-      id: 4, name: "Aman", src: "https://ca.slack-edge.com/T03CXPZBX-U0101SFJ8PJ-859f859d0ad0-512"
+      id: 7, name: "Aman", src: "https://ca.slack-edge.com/T03CXPZBX-U0101SFJ8PJ-859f859d0ad0-512"
+    },
+    {
+      id: 8, name: "Prateek", src: "https://ca.slack-edge.com/T03CXPZBX-UD4N60X37-e4129aa284a6-512"
     }]
   |};
 ]

@@ -18,7 +18,7 @@ module LoaderComponent(Config: LoaderConfig) {
       switch(state) {
       | Loading => Js.Promise.(
         fetchData()
-        |> then_((result) => resolve(setState(_ => Loadable.Live(result))))
+        |> then_((result) => resolve(setState(_ => Loadable.Success(result))))
         |> catch(_error => {
           resolve(setState(_ => Loadable.Error))
         })
@@ -33,7 +33,7 @@ module LoaderComponent(Config: LoaderConfig) {
       {
         switch (state) {
           | Loading => <div>(ReasonReact.string("Loading"))</div>
-          | Live(result) => renderView(result)
+          | Success(result) => renderView(result)
           | Error => <div>(ReasonReact.string("Error..."))</div>
         };
       }

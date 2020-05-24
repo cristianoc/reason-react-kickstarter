@@ -1,6 +1,7 @@
 module type DataFetcherConfig = {type dataType;};
 
 module Make = (Config: DataFetcherConfig) => {
+  // argument is a function whose return type is a data promise of type Post.t
   let useLoadable = (
     fetchData: unit => Js.Promise.t(Config.dataType)
   ) => {
@@ -13,7 +14,7 @@ module Make = (Config: DataFetcherConfig) => {
           Js.Promise.(   
             fetchData()
             |> then_((result) => {
-              resolve(setState(_ => Loadable.Live(result)))
+              resolve(setState(_ => Loadable.Success(result)))
             })
             |> catch(_error=> resolve(setState(_ => Loadable.Error)))
             |> ignore

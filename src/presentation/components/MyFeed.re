@@ -2,7 +2,7 @@ module PostsViewComponent {
   [@react.component]
   let make = (~posts: list(Post.post)) => {
       <div>
-       <TailiwindTable posts />
+       <PostsList posts />
       </div>
   };
 };
@@ -10,23 +10,8 @@ module PostsViewComponent {
 module UsersViewComponent {
   [@react.component]
   let make = (~users: User.t) => {
-      Js.log(users);
       <div>
-        <ListComponent header="Users">
-          (
-            users
-            |> List.map((user: User.user) => {
-              <ListItem key=(string_of_int(user.id))>
-                <ListItemAvatar>
-                  <Avatar src=(user.src)>
-                    <ImageIcon.ImageIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText text=(user.name) />
-              </ListItem>
-            })
-          )
-        </ListComponent>
+        <UserList users />
       </div>
   };
 };
@@ -41,14 +26,14 @@ module PostsComponent = {
       
     let (state, setState) = React.useState(_ => Loadable.Loading)
 
-    let dataPromise = () => PostsRepo.fetchPostsV2();
+    let dataPromise = () => PostsRepo.fetchPostsV2(); // stores reference to a function which returns a promise
     
     //use-effect - adds the ability to perform side effects from a function
     React.useEffect1(() => {
       switch(state) {
       | Loading => Js.Promise.(
         dataPromise()
-        |> then_((result) => resolve(setState(_ => Loadable.Live(result))))
+        |> then_((result) => resolve(setState(_ => Loadable.Success(result))))
         |> catch(_error => {
           resolve(setState(_ => Loadable.Error))
         })
@@ -63,7 +48,7 @@ module PostsComponent = {
     {
       switch(state) {
         | Loading => <div>(ReasonReact.string("Loading"))</div>
-        | Live(posts) => <PostsViewComponent posts />
+        | Success(posts) => <PostsViewComponent posts />
         | Error => <div>(ReasonReact.string("error"))</div>
       }
     }
@@ -88,7 +73,7 @@ module UsersComponent = {
       switch(state) {
       | Loading => Js.Promise.(
         dataPromise()
-        |> then_((result) => resolve(setState(_ => Loadable.Live(result))))
+        |> then_((result) => resolve(setState(_ => Loadable.Success(result))))
         |> catch(_error => {
           resolve(setState(_ => Loadable.Error))
         })
@@ -103,7 +88,7 @@ module UsersComponent = {
     {
       switch(state) {
         | Loading => <div>(ReasonReact.string("Loading"))</div>
-        | Live(users) => <UsersViewComponent users />
+        | Success(users) => <UsersViewComponent users />
         | Error => <div>(ReasonReact.string("error"))</div>
       }
     }
@@ -121,11 +106,12 @@ module PostsComponentWithDataFetcher = {
 
   [@react.component]
   let make = () => {
+    //data promise of type Post.t
     let data = PostsFetcher.useLoadable(() => PostsRepo.fetchPostsV2());
     {
       switch(data) {
         | Loading => <div>(ReasonReact.string("Loading"))</div>
-        | Live(posts) => <PostsViewComponent posts />
+        | Success(posts) => <PostsViewComponent posts />
         | Error => <div>(ReasonReact.string("error"))</div>
       }
     }
@@ -138,15 +124,15 @@ module UsersComponentWithDataFetcher = {
     type dataType = User.t
   };
   
-  module PostsFetcher = DataFetcher.Make(UserFetcherConfig);
+  module UserFetcher = DataFetcher.Make(UserFetcherConfig);
 
   [@react.component]
   let make = () => {
-    let data = PostsFetcher.useLoadable(() => UsersRepo.fetchUsers());
+    let data = UserFetcher.useLoadable(() => UsersRepo.fetchUsers());
     {
       switch(data) {
         | Loading => <div>(ReasonReact.string("Loading"))</div>
-        | Live(users) => <UsersViewComponent users />
+        | Success(users) => <UsersViewComponent users />
         | Error => <div>(ReasonReact.string("error"))</div>
       }
     }
@@ -169,7 +155,7 @@ module PostsComponentWithDataFetcherV2 = {
     {
       switch(data) {
         | Loading(_data) => <div>(ReasonReact.string("Loading"))</div>
-        | Live(posts) => <PostsViewComponent posts />
+        | Success(posts) => <PostsViewComponent posts />
         | Error(error) => <div>(ReasonReact.string(error.message))</div>
       }
     }
