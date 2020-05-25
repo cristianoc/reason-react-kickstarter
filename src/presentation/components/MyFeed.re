@@ -93,17 +93,37 @@ module UsersComponent = {
   };
 };
 
-module PostsComponentWithDataFetcher = {
-  module PostsFetcherConfig = {
-    type dataType = Post.t;
-  };
+let useLoadable = fetchData => {
+  let (state, setState) = React.useState(_ => Loadable.Loading);
 
-  module PostsFetcher = DataFetcher.Make(PostsFetcherConfig);
+  React.useEffect1(
+    () => {
+      switch (state) {
+      | Loading =>
+        Js.Promise.(
+          fetchData()
+          |> then_(result => {
+               resolve(setState(_ => Loadable.Success(result)))
+             })
+          |> catch(_error => resolve(setState(_ => Loadable.Error)))
+          |> ignore
+        )
+      | _ => ()
+      };
+      None;
+    },
+    [|state|],
+  );
+  state;
+};
+
+
+module PostsComponentWithDataFetcher = {
 
   [@react.component]
   let make = () => {
     //data promise of type Post.t
-    let data = PostsFetcher.useLoadable(() => PostsRepo.fetchPostsV2());
+    let data = useLoadable(() => PostsRepo.fetchPostsV2());
     switch (data) {
     | Loading => <div> {ReasonReact.string("Loading")} </div>
     | Success(posts) => <PostsViewComponent posts />
@@ -112,16 +132,11 @@ module PostsComponentWithDataFetcher = {
   };
 };
 
+
 module UsersComponentWithDataFetcher = {
-  module UserFetcherConfig = {
-    type dataType = User.t;
-  };
-
-  module UserFetcher = DataFetcher.Make(UserFetcherConfig);
-
   [@react.component]
   let make = () => {
-    let data = UserFetcher.useLoadable(() => UsersRepo.fetchUsers());
+    let data = useLoadable(() => UsersRepo.fetchUsers());
     switch (data) {
     | Loading => <div> {ReasonReact.string("Loading")} </div>
     | Success(users) => <UsersViewComponent users />
